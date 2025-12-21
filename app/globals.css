@@ -1,26 +1,250 @@
-@import "tailwindcss";
+/* --------------------------- */
+/* GLOBAL NAVIGATION STYLES   */
+/* --------------------------- */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.nav-link {
+  color: #cbd5e1;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.nav-link:hover {
+  color: #22d3ee;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.mobile-link {
+  display: block;
+  padding: 10px;
+  border-radius: 6px;
+  color: #cbd5e1;
+}
+.mobile-link:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --------------------------- */
+/* BUTTON STYLES               */
+/* --------------------------- */
+
+.btn-primary {
+  background: #22d3ee;
+  color: black;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn-primary:hover {
+  background: #67e8f9;
+}
+
+.btn-secondary {
+  border: 1px solid #334155;
+  padding: 12px 26px;
+  border-radius: 999px;
+  transition: 0.2s;
+}
+.btn-secondary:hover {
+  background: #1e293b;
+}
+
+/* --------------------------- */
+/* FEATURE CARDS               */
+/* --------------------------- */
+
+.feature-card {
+  background: #0f172a;
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition: 0.25s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.feature-text {
+  color: #cbd5e1;
+}
+
+/* --------------------------- */
+/* PRODUCT CARDS               */
+/* --------------------------- */
+
+.product-card {
+  background: #0f172a;
+  padding: 26px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  transition: all 0.35s ease;
+  transform: translateY(0px) scale(1);
+  box-shadow: 0 0 0 rgba(34, 211, 238, 0);
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 8px 30px rgba(34, 211, 238, 0.25);
+}
+
+.product-img {
+  height: 160px;
+  margin: 0 auto 16px;
+  transition: transform 0.3s ease;
+}
+.product-card:hover .product-img {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.product-price {
+  color: #22d3ee;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* --------------------------- */
+/* ANIMATIONS (KEEPING ONLY USEFUL) */
+/* --------------------------- */
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ⚠️ Removed Skeleton FadeIn, ScaleIn, Delays */
+
+/* --------------------------- */
+/* PARALLAX HERO LAYERS       */
+/* --------------------------- */
+
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  transition: transform 0.1s linear;
+}
+
+.layer-1 { transform: translateZ(-2px) scale(1.2); opacity: 0.25; }
+.layer-2 { transform: translateZ(-1px) scale(1.1); opacity: 0.35; }
+.layer-3 { transform: translateZ(0); }
+
+/* --------------------------- */
+/* FIX INPUT VISIBILITY       */
+/* --------------------------- */
+
+input, textarea {
+  color: #050505 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* --------------------------- */
+/* FIX BUTTON VISIBILITY      */
+/* --------------------------- */
+
+button {
+  color: #ffffff !important;
+}
+
+/* Preserve tailwind inheritance */
+* {
+  color: inherit;
+}
+
+
+
+
+/* --------------------------- */
+/* ANIMATIONS (RESTORED & CLEAN) */
+/* --------------------------- */
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* --------------------------- */
+/* ANIMATION UTILITY CLASSES  */
+/* --------------------------- */
+
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* --------------------------- */
+/* DELAY UTILITIES            */
+/* --------------------------- */
+
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.6s; }
