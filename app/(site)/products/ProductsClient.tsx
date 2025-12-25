@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductCard from "@/app/(site)/components/product/ProductCard";
 
@@ -12,7 +12,7 @@ interface Product {
   slug: string;
 }
 
-export default function ProductsContent() {
+function ProductsContent() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +28,7 @@ export default function ProductsContent() {
           ? `${process.env.NEXT_PUBLIC_API_URL}/api/products?category=${category}`
           : `${process.env.NEXT_PUBLIC_API_URL}/api/products`;
 
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
 
         if (data.success && Array.isArray(data.products)) {
@@ -67,5 +67,13 @@ export default function ProductsContent() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function ProductsClient() {
+  return (
+    <Suspense fallback={<div className="text-white text-center py-20">Loading...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
