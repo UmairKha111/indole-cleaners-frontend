@@ -56,12 +56,17 @@ function ProductsContent() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 text-white">
+  //  <div className="max-w-6xl mx-auto px-6 mt-28 pb-16 text-white">
+  
+<div className="max-w-6xl mx-auto px-6 pt-6 pb-16 text-white">
+
+
       <h1 className="text-4xl font-bold mb-10 uppercase">
         {category ? category.replace(/-/g, " ") : "Our Products"}
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+
         {products.map((p) => (
           <ProductCard key={p._id} product={p} />
         ))}

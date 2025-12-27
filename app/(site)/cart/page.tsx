@@ -7,10 +7,11 @@ export default function CartPage() {
   const { cart, updateQuantity, removeFromCart } = useCart();
 
   const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + (item.price ?? 0) * item.quantity,
     0
   );
 
+  // EMPTY CART
   if (cart.length === 0) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center text-white">
@@ -30,32 +31,78 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16 text-white">
+    <div className="container-safe pt-6 pb-16 text-white">
+
       <h1 className="text-4xl font-bold mb-10">Your Cart</h1>
 
+      {/* CART ITEMS */}
       <div className="space-y-6">
-        {cart.map((item) => (
-  <div
-    key={item._id}
-    className="flex items-center justify-between bg-slate-900 p-5 rounded-2xl"
-  >
-    {/* Quantity */}
-    <button onClick={() => updateQuantity(item._id, item.quantity - 1)}>
-      -
-    </button>
+        {cart.map((item) => {
+          const safeName = item.name || "Unnamed Product";
+          const safePrice = item.price ?? 0;
+          const safeImage = item.image || "/placeholder.png";
 
-    <span>{item.quantity}</span>
+          return (
+          <div
+  key={item._id}
+  className="bg-slate-900 rounded-2xl border border-white/10 p-4 space-y-4"
+>
+  {/* TOP ROW: IMAGE + INFO */}
+  <div className="flex items-center gap-4">
+    <img
+      src={item.image || '/placeholder.png'}
+      alt={item.name || 'Product'}
+      className="w-20 h-20 object-contain rounded-lg bg-black/20"
+    />
 
-    <button onClick={() => updateQuantity(item._id, item.quantity + 1)}>
-      +
-    </button>
+    <div className="flex-1">
+      <h3 className="text-base font-semibold text-white leading-tight">
+        {item.name || 'Unnamed Product'}
+      </h3>
+      <p className="text-cyan-300 font-bold text-sm mt-1">
+        ₹{item.price ?? 0}
+      </p>
+    </div>
+  </div>
 
-    <button onClick={() => removeFromCart(item._id)}>
+  {/* BOTTOM ROW: QUANTITY + REMOVE */}
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-3 bg-black/40 px-4 py-2 rounded-full">
+      <button
+        onClick={() =>
+          item.quantity > 1 &&
+          updateQuantity(item._id, item.quantity - 1)
+        }
+        className="text-lg font-bold hover:text-red-400 transition"
+      >
+        −
+      </button>
+
+      <span className="font-semibold text-sm">
+        {item.quantity}
+      </span>
+
+      <button
+        onClick={() =>
+          updateQuantity(item._id, item.quantity + 1)
+        }
+        className="text-lg font-bold hover:text-green-400 transition"
+      >
+        +
+      </button>
+    </div>
+
+    <button
+      onClick={() => removeFromCart(item._id)}
+      className="text-red-400 text-sm font-medium hover:text-red-300 transition"
+    >
       Remove
     </button>
   </div>
-))}
+</div>
 
+          );
+        })}
       </div>
 
       {/* CART SUMMARY */}

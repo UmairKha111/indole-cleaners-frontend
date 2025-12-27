@@ -38,24 +38,34 @@ export default function ProductDetails() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 text-white">
-      <div className="flex gap-10">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-96 h-96 object-cover rounded-xl border border-white/10"
-        />
+    <div className="container-safe py-16 text-white">
+      <div className="flex flex-col lg:flex-row items-start gap-16">
 
-        <div>
-          <h1 className="text-4xl font-bold mb-4">
+     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+  <img
+    src={product.image}
+    alt={product.name}
+    className="w-full max-w-sm mx-auto object-contain"
+  />
+</div>
+
+
+
+       <div className="max-w-xl space-y-6">
+
+
+        <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight">
+
             {product.name}
           </h1>
 
-          <p className="text-xl text-cyan-300 font-semibold mb-6">
+          <p className="text-2xl text-cyan-400 font-bold">
+
             ₹{product.price}
           </p>
 
-          <p className="text-slate-300 mb-8">
+          <p className="text-slate-300 leading-relaxed">
+
             {product.description}
           </p>
 
@@ -63,14 +73,17 @@ export default function ProductDetails() {
           {isInCart ? (
             <button
               onClick={() => (window.location.href = "/cart")}
-              className="px-6 py-3 bg-green-500 text-black rounded-full text-lg font-semibold hover:bg-green-400"
+             className="w-full sm:w-auto px-8 py-3 rounded-full text-lg font-semibold transition shadow-lg"
+
             >
               Go to Cart →
             </button>
           ) : (
             <button
               onClick={() => addToCart(product)}
-              className="px-6 py-3 bg-cyan-400 text-black rounded-full text-lg font-semibold hover:bg-cyan-300"
+             className="w-full sm:w-auto px-8 py-3 rounded-full text-lg font-semibold transition shadow-lg"
+
+
             >
               Add to Cart
             </button>

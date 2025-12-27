@@ -24,10 +24,13 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="pt-32 bg-slate-950 text-white overflow-x-hidden">
+    <main className="pt-20 bg-slate-950 text-white overflow-x-hidden">
       {/* ================= HERO SECTION ================= */}
-      <section className="relative max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16 min-h-[80vh]">
+   
+      <section className="relative min-h-[80vh]">
+  <div className="container-safe flex flex-col md:flex-row items-center gap-16">
 
+ 
         {/* Background Layer 1 */}
         <div
           className="parallax-layer absolute inset-0 -z-10"
@@ -50,7 +53,8 @@ export default function Home() {
 
         {/* Left Content */}
         <div className="flex-1 relative z-10 animate-fadeUp">
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+
             Transform Your Home
             <span className="text-cyan-400 block animate-fadeIn delay-1">
               With Premium Cleaning
@@ -64,7 +68,8 @@ export default function Home() {
           <div className="mt-8 flex gap-4 animate-fadeIn delay-3">
             <Link
               href="/products"
-              className="px-7 py-3 bg-cyan-400 text-bold  text-red-600  rounded-full hover:bg-cyan-300 shadow-lg hover:scale-105 transition"
+              className="px-7 py-3 bg-cyan-400 text-slate-900 font-semibold rounded-full hover:bg-cyan-300 transition"
+
             >
               Shop Now
             </Link>
@@ -83,7 +88,7 @@ export default function Home() {
           className="flex-1 flex justify-center parallax-layer relative z-10"
           data-speed="4"
         >
-          <div className="w-80 h-80 bg-slate-900 border border-white/10 rounded-3xl shadow-2xl flex items-center justify-center animate-float">
+          <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-slate-900 border border-white/10 rounded-3xl shadow-2xl flex items-center justify-center animate-float">
             <img
               src="/product-images/surface-cleaner.png"
               alt="Surface Cleaner"
@@ -91,10 +96,16 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+       </div>
+</section>
 
+      
+
+     
       {/* ================= FEATURES SECTION ================= */}
+      
       <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="container-safe">
         <h2 className="text-3xl font-bold text-center text-red-600 animate-fadeUp">
           Why Choose <span className="text-blue-900">Indole Cleaners?</span>
         </h2>
@@ -126,6 +137,7 @@ export default function Home() {
       Removes grease, stains & germs.
     </p>
   </div>
+</div>
 </div>
 </section>
       {/* ================= FEATURED PRODUCTS ================= */}

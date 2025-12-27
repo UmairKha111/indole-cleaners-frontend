@@ -28,12 +28,12 @@ export default function RootLayout({
         <Toaster position="top-right" />
 
         <CartProviderWrapper>
-          <Navbar />
+          {/* <Navbar /> */}
 
           {/* Remove animate-fadeIn because CDN does NOT support it */}
-          <main className="min-h-[80vh]">{children}</main>
+          <main className=" ">{children}</main>
 
-          <Footer />
+          {/* <Footer /> */}
         </CartProviderWrapper>
       </body>
     </html>
